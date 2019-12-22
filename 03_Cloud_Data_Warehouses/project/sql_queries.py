@@ -10,17 +10,36 @@ config = configparser.ConfigParser()
 config.read('dwh.cfg')
 
 # DROP TABLES
-staging_events_table_drop = ""
-staging_songs_table_drop = ""
-songplay_table_drop = ""
-user_table_drop = ""
-song_table_drop = ""
-artist_table_drop = ""
-time_table_drop = ""
+staging_events_table_drop = "DROP TABLE IF EXISTS public.events_stage;"
+staging_songs_table_drop = "DROP TABLE IF EXISTS public.songs_stage;"
+songplay_table_drop = "DROP TABLE IF EXISTS public.songplays;"
+user_table_drop = "DROP TABLE IF EXISTS public.users;"
+song_table_drop = "DROP TABLE IF EXISTS public.songs;"
+artist_table_drop = "DROP TABLE IF EXISTS public.artists;"
+time_table_drop = "DROP TABLE IF EXISTS public.time;"
 
 # CREATE TABLES
 staging_events_table_create = (
     """
+    CREATE TABLE public.events_stage(
+        artist_id VARCHAR ENCODE ZSTD,
+        auth VARCHAR ENCODE ZSTD,
+        first_name VARCHAR ENCODE ZSTD,
+        gender VARCHAR ENCODE ZSTD,
+        item_in_session VARCHAR ENCODE ZSTD,
+        last_name VARCHAR ENCODE ZSTD,
+        length FLOAT8 ENCODE ZSTD,
+        level VARCHAR ENCODE ZSTD,
+        location VARCHAR ENCODE ZSTD,
+        method VARCHAR ENCODE ZSTD,
+        page VARCHAR ENCODE ZSTD,
+        registration VARCHAR ENCODE ZSTD,
+        session_id VARCHAR ENCODE ZSTD,
+        song_title VARCHAR ENCODE ZSTD,
+        status VARCHAR ENCODE ZSTD,
+        ts VARCHAR ENCODE ZSTD,
+        user_agent VARCHAR ENCODE ZSTD,
+        user_id VARCHAR ENCODE ZSTD);
     """)
 
 staging_songs_table_create = (
