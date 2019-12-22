@@ -10,10 +10,10 @@ from sql_queries import create_table_queries, drop_table_queries
 
 def drop_tables(cur, conn):
     """
-    This function iterates over all the drop table queries and executes them.
-    INPUTS:
-    * cur the cursor variable of the database
-    * conn the connection variable of the database
+    Executes all drop table queries.
+    Arguments:
+        - cur: cursor variable of the database
+        - conn: connection variable of the database
     """
     for query in drop_table_queries:
         cur.execute(query)
@@ -22,10 +22,10 @@ def drop_tables(cur, conn):
 
 def create_tables(cur, conn):
     """
-    This function iterates over all the create table queries and executes them.
-    INPUTS:
-    * cur the cursor variable of the database
-    * conn the connection variable of the database
+    Executes all create table queries.
+    Arguments:
+        - cur: cursor variable of the database
+        - conn: connection variable of the database
     """
     for query in create_table_queries:
         cur.execute(query)
@@ -33,10 +33,7 @@ def create_tables(cur, conn):
 
 
 def main():
-    """
-    This function connects to the database using credentials in the config file and then drops
-    and recreates the required tables.
-    """
+    """Drops and recreates the required tables."""
     config = configparser.ConfigParser()
     config.read('dwh.cfg')
 
