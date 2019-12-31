@@ -43,7 +43,7 @@ def process_song_data(spark, input_data, output_data):
 
     # write songs table to parquet files partitioned by year and artist
     songs_table.write.partitionBy('year', 'artist_id').parquet(
-        os.path.join(output_data, 'songs.parquet'), 'overwrite')
+        os.path.join(output_data, 'songs/songs.parquet'), 'overwrite')
 
     # extract columns to create artists table
     artists_table = df['artist_id', 'artist_name', 'artist_location',
@@ -51,7 +51,7 @@ def process_song_data(spark, input_data, output_data):
 
     # write artists table to parquet files
     artists_table.write.parquet(os.path.join(
-        output_data, 'artists.parquet'), 'overwrite')
+        output_data, 'artists/artists.parquet'), 'overwrite')
 
 
 def process_log_data(spark, input_data, output_data):
@@ -78,7 +78,7 @@ def process_log_data(spark, input_data, output_data):
 
     # write users table to parquet files
     users_table.write.parquet(os.path.join(
-        output_data, 'users.parquet'), 'overwrite')
+        output_data, 'users/users.parquet'), 'overwrite')
 
     # create timestamp column from original timestamp column
     get_timestamp = udf(lambda x: str(int(int(x) / 1000)))
@@ -98,7 +98,7 @@ def process_log_data(spark, input_data, output_data):
 
     # write time table to parquet files partitioned by year and month
     time_table.write.partitionBy('year', 'month').parquet(
-        os.path.join(output_data, 'time.parquet'), 'overwrite')
+        os.path.join(output_data, 'time/time.parquet'), 'overwrite')
 
     # read in song data to use for songplays table
     song_data = os.path.join(input_data, "song-data/A/A/A/*.json")
@@ -121,7 +121,7 @@ def process_log_data(spark, input_data, output_data):
 
     # write songplays table to parquet files partitioned by year and month
     songplays_table.write.partitionBy('year', 'month').parquet(
-        os.path.join(output_data, 'songplays.parquet'), 'overwrite')
+        os.path.join(output_data, 'songplays/songplays.parquet'), 'overwrite')
 
 
 def main():
