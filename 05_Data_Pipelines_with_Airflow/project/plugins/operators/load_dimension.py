@@ -1,6 +1,12 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Wed Jan 08 2019
+@author: danvargg
+"""
 from airflow.hooks.postgres_hook import PostgresHook
 from airflow.models import BaseOperator
 from airflow.utils.decorators import apply_defaults
+
 
 class LoadDimensionOperator(BaseOperator):
 
