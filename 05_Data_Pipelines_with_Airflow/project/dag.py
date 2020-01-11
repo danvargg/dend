@@ -11,24 +11,17 @@ from airflow.operators.dummy_operator import DummyOperator
 from airflow.operators import (StageToRedshiftOperator, LoadFactOperator,
                                LoadDimensionOperator, DataQualityOperator)
 
-from plugins.helpers import sql_queries
+from helpers import sql_queries
 
 default_args = {
-    'owner': 'danvargg',
-    'start_date': datetime(2020, 1, 13),
-    'end_date': datetime(2020, 2, 13),
-    'depends_on_past': False,
-    'retries': 3,
-    'retry_delay': timedelta(minutes=5),
-    'catchup': False,
-    'email_on_retry': False
+    'owner': 'udacity',
+    'start_date': datetime(2020, 1, 11),
 }
 
 dag = DAG('airflow_dag',
           default_args=default_args,
           description='Load and transform data in Redshift with Airflow',
-          schedule_interval='0 * * * *',
-          max_active_runs=3
+          schedule_interval='0 * * * *'
           )
 
 start_operator = DummyOperator(task_id='Begin_execution',  dag=dag)
