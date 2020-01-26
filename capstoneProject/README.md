@@ -1,5 +1,5 @@
 # Data Engineering Nanodegree
 
-## Capstone Project: Facial Keypoints Detection
+## Capstone Project
 Daniel Vargas
-January 19, 2020
+January 26, 2020
